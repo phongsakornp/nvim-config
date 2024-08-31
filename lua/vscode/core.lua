@@ -19,3 +19,12 @@ vim.keymap.set('n', '<leader>ff', function ()
     'workbench.action.findInFiles',
     { args = { query = vim.fn.expand('<cword>'), replace = ''} })
 end, { silent = true })
+
+
+vim.keymap.set('n', 'za', function ()
+  require('vscode-neovim').action('editor.toggleFold')
+end, { silent = true })
+
+vim.keymap.set('n', 'zA', function ()
+  require('vscode-neovim').action('editor.unfoldAll')
+end, { silent = true })
