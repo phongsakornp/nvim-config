@@ -1,4 +1,4 @@
------------------------------------------------------------
+----------------------------------------------------------
 -- Define keymaps of Neovim and installed plugins.
 -----------------------------------------------------------
 
@@ -15,8 +15,8 @@ end
 map("n", "<leader>nh", ":noh<CR>", { desc = "Clear search highlights" })
 
 ---- Window management
-map("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" })
-map("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" })
+map("n", "<leader>s=", "<C-w>v", { desc = "Split window vertically" })
+map("n", "<leader>s-", "<C-w>s", { desc = "Split window horizontally" })
 map("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" })
 map("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" })
 map("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "Open new tab" })
