@@ -40,17 +40,9 @@ lazy.setup {
       -- https://github.com/nvim-lua/plenary.nvim
       "nvim-lua/plenary.nvim",
     },
-
     {
-      -- https://github.com/christoomey/vim-tmux-navigator
-      "christoomey/vim-tmux-navigator",
-    },
-
-    -- Colorscheme:
-    {
-      "navarasu/onedark.nvim",
-      lazy = false, -- make sure we load this during startup if it is your main colorscheme
-      priority = 1000, -- make sure to load this before all the other start plugins
+      -- https://github.com/nvim-treesitter/nvim-treesitter-context
+      "nvim-treesitter/nvim-treesitter-context",
     },
 
     --------------------------------
