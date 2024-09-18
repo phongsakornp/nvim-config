@@ -9,6 +9,7 @@ local servers = {
   "lua_ls",
   "prismals",
   "pyright",
+  "ruff",
 }
 
 return {
@@ -39,8 +40,6 @@ return {
           "prettier", -- prettier formatter
           "stylua", -- lua formatter
           "isort", -- python formatter
-          "black", -- python formatter
-          "pylint",
           "eslint_d",
         },
       }
@@ -101,6 +100,27 @@ return {
               },
             },
           }
+        elseif lsp == "pyright" then
+          -- https://docs.astral.sh/ruff/editors/setup/#neovim
+          lspconfig["pyright"].setup {
+            capabilities = capabilities,
+            settings = {
+              pyright = {
+                -- Using Ruff's import organizer
+                disableOrganizeImports = true,
+              },
+              python = {
+                analysis = {
+                  -- Ignore all files for analysis to exclusively use Ruff for linting
+                  ignore = { "*" },
+                },
+              },
+            },
+          }
+        elseif lsp == "ruff" then
+          lspconfig["ruff"].setup {
+            capabilities = capabilities,
+          }
         else
           -- Default setup
           lspconfig[lsp].setup {
@@ -109,7 +129,8 @@ return {
         end
       end
 
-      -- I cannot make mason-lspconfig handlers work, still don't know why
+      -- I cannot make mason-lspconfig handlers work, still don't know why,
+      -- use loop through servers instead.
       -- require("mason-lspconfig").setup_handlers {
       --   function(server_name)
       --     require("lspconfig")[server_name].setup {
@@ -174,6 +195,21 @@ return {
           keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
         end,
       })
+      vim.api.nvim_create_autocmd("LspAttach", {
+        -- https://docs.astral.sh/ruff/editors/setup/#neovim
+        group = vim.api.nvim_create_augroup("lsp_attach_disable_ruff_hover", { clear = true }),
+        callback = function(args)
+          local client = vim.lsp.get_client_by_id(args.data.client_id)
+          if client == nil then
+            return
+          end
+          if client.name == "ruff" then
+            -- Disable hover in favor of Pyright
+            client.server_capabilities.hoverProvider = false
+          end
+        end,
+        desc = "LSP: Disable hover capability from Ruff",
+      })
     end,
   },
 
@@ -190,7 +226,10 @@ return {
         javascriptreact = { "eslint_d" },
         typescriptreact = { "eslint_d" },
         svelte = { "eslint_d" },
-        python = { "pylint" },
+        -- Let's ruff language server handle linting.
+        -- This comment help prevent duplicated linting,
+        -- keep it for reference.
+        -- python = { "ruff" },
       }
 
       local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
@@ -317,7 +356,7 @@ return {
           graphql = { "prettier" },
           liquid = { "prettier" },
           lua = { "stylua" },
-          python = { "isort", "black" },
+          python = { "isort", "ruff_format" },
         },
         format_on_save = {
           lsp_fallback = true,
