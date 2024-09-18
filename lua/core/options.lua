@@ -36,12 +36,16 @@ opt.laststatus = 3 -- Set global statusline
 opt.signcolumn = "yes" -- Show the sign column
 
 -----------------------------------------------------------
--- Tabs, indent
+-- Tabs, indent, whitespace
 -----------------------------------------------------------
 opt.expandtab = true -- Use spaces instead of tabs
-opt.shiftwidth = 2 -- Shift 2 spaces when tab
-opt.tabstop = 2 -- 1 tab == 2 spaces
+opt.shiftwidth = 4 -- Shift 4 spaces when tab
+opt.tabstop = 4 -- 1 tab == 2 spaces
 opt.smartindent = true -- Autoindent new lines
+
+-- Use `:set list` and `:set nolist` to show/hide invisible chars.
+-- opt.list = true
+opt.listchars = "tab:↦ ,lead:∙,trail:∙"
 
 -----------------------------------------------------------
 -- Memory, CPU
