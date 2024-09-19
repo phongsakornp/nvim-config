@@ -37,10 +37,17 @@ opt.signcolumn = "yes" -- Show the sign column
 
 -----------------------------------------------------------
 -- Tabs, indent, whitespace
+-- expandtab: Use the appropriate number of spaces to insert a <Tab>
+-- tabstop: Number of spaces that a <Tab> in the file counts for
+-- See more info with `:h tabstop`
+-- Set 'tabstop' and 'shiftwidth' to whatever you prefer and use 'expandtab'.
+-- This way you will always insert spaces.
+-- The formatting will never be messed up when 'tabstop' is changed.
+-- You do need to check if no Tabs exist in the file, just like in the item just above.
 -----------------------------------------------------------
-opt.expandtab = true -- Use spaces instead of tabs
-opt.shiftwidth = 4 -- Shift 4 spaces when tab
-opt.tabstop = 4 -- 1 tab == 2 spaces
+opt.expandtab = true
+opt.shiftwidth = 4
+opt.tabstop = 4
 opt.smartindent = true -- Autoindent new lines
 
 -- Use `:set list` and `:set nolist` to show/hide invisible chars.
