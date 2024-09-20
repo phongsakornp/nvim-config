@@ -7,9 +7,9 @@
 -- See: https://github.com/nvim-treesitter/nvim-treesitter#quickstart
 
 return {
-  'nvim-treesitter/nvim-treesitter',
+  "nvim-treesitter/nvim-treesitter",
   event = { "BufReadPre", "BufNewFile" },
-  build = ':TSUpdate',
+  build = ":TSUpdate",
   dependencies = {
     "windwp/nvim-ts-autotag",
   },
@@ -24,31 +24,32 @@ return {
     },
 
     autotag = {
-      enable =true,
+      enable = true,
     },
 
     ensure_installed = {
-      'bash',
-      'c',
-      'cpp',
-      'html',
-      'css',
-      'javascript',
-      'json',
-      'typescript',
-      'tsx',
-      'lua',
-      'python',
-      'rust',
-      'vim',
-      'vimdoc',
-      'yaml',
-      'markdown',
-      'markdown_inline',
-      'dockerfile',
-      'gitignore',
-      'query',
-      'graphql'
+      "astro",
+      "bash",
+      "c",
+      "cpp",
+      "html",
+      "css",
+      "javascript",
+      "json",
+      "typescript",
+      "tsx",
+      "lua",
+      "python",
+      "rust",
+      "vim",
+      "vimdoc",
+      "yaml",
+      "markdown",
+      "markdown_inline",
+      "dockerfile",
+      "gitignore",
+      "query",
+      "graphql",
     },
 
     -- A list of parser names, or "all"
@@ -66,7 +67,7 @@ return {
     },
   },
   config = function(_, opts)
-    local treesitter = require("nvim-treesitter.configs")
+    local treesitter = require "nvim-treesitter.configs"
     treesitter.setup(opts)
   end,
 }

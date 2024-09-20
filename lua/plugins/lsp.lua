@@ -1,4 +1,5 @@
 local servers = {
+  "astro",
   "ts_ls",
   "html",
   "cssls",
@@ -119,6 +120,10 @@ return {
           }
         elseif lsp == "ruff" then
           lspconfig["ruff"].setup {
+            capabilities = capabilities,
+          }
+        elseif lsp == "astro" then
+          lspconfig["astro"].setup {
             capabilities = capabilities,
           }
         else
@@ -357,6 +362,7 @@ return {
           liquid = { "prettier" },
           lua = { "stylua" },
           python = { "isort", "ruff_format" },
+          astro = { "prettier" },
         },
         format_on_save = {
           lsp_fallback = true,
