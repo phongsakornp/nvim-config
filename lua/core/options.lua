@@ -45,7 +45,7 @@ opt.signcolumn = "yes" -- Show the sign column
 -- The formatting will never be messed up when 'tabstop' is changed.
 -- You do need to check if no Tabs exist in the file, just like in the item just above.
 -----------------------------------------------------------
-opt.expandtab = true
+opt.expandtab = false
 opt.shiftwidth = 4
 opt.tabstop = 4
 opt.smartindent = true -- Autoindent new lines
