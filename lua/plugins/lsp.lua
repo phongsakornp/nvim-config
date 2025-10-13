@@ -62,7 +62,7 @@ return {
 
       for _, lsp in ipairs(servers) do
         if lsp == "graphql" then
-          lspconfig["graphql"].setup {
+          vim.lsp.config("graphql", {
             capabilities = capabilities,
             filetypes = {
               "graphql",
@@ -71,9 +71,9 @@ return {
               "typescriptreact",
               "javascriptreact",
             },
-          }
+          })
         elseif lsp == "emmet_ls" then
-          lspconfig["emmet_ls"].setup {
+          vim.lsp.config("emmet_ls", {
             capabilities = capabilities,
             filetypes = {
               "html",
@@ -85,9 +85,9 @@ return {
               "less",
               "svelte",
             },
-          }
+          })
         elseif lsp == "lua_ls" then
-          lspconfig["lua_ls"].setup {
+          vim.lsp.config("lua_ls", {
             capabilities = capabilities,
             settings = {
               Lua = {
@@ -100,10 +100,10 @@ return {
                 },
               },
             },
-          }
+          })
         elseif lsp == "pyright" then
           -- https://docs.astral.sh/ruff/editors/setup/#neovim
-          lspconfig["pyright"].setup {
+          vim.lsp.config("pyright", {
             capabilities = capabilities,
             settings = {
               pyright = {
@@ -117,23 +117,31 @@ return {
                 },
               },
             },
-          }
+          })
         elseif lsp == "ruff" then
-          lspconfig["ruff"].setup {
+          vim.lsp.config("ruff", {
             capabilities = capabilities,
-          }
+          })
         elseif lsp == "astro" then
-          lspconfig["astro"].setup {
+          vim.lsp.config("astro", {
             capabilities = capabilities,
-          }
+          })
         else
           -- Default setup
-          lspconfig[lsp].setup {
+          vim.lsp.config(lsp, {
             capabilities = capabilities,
-          }
+          })
         end
       end
 
+      --   elseif lsp == "pyright" then
+      --   elseif lsp == "ruff" then
+      --     lspconfig["ruff"].setup {
+      --       capabilities = capabilities,
+      --     }
+      --   end
+      -- end
+      --
       -- I cannot make mason-lspconfig handlers work, still don't know why,
       -- use loop through servers instead.
       -- require("mason-lspconfig").setup_handlers {
